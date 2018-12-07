@@ -1,42 +1,167 @@
-﻿<!DOCTYPE html>
-<html>
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from html.codedthemes.com/mash-able/dark/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 25 Nov 2018 18:49:42 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <title>Student Management System</title>
+
+
+    <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="#">
+    <meta name="keywords" content="flat ui, Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="#">
+
+    <link rel="icon" href="~/ThemeAssets/images/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Mada:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="~/Scripts/bower_components/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/icon/themify-icons/themify-icons.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/icon/icofont/css/icofont.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/flag-icon/flag-icon.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/icon/SVG-animated/svg-weather.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/menu-search/css/component.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/dashboard/horizontal-timeline/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/dashboard/amchart/css/amchart.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/widget/calender/pignose.calendar.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/pages/flag-icon/flag-icon.min.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/css/linearicons.css">
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/css/simple-line-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/css/ionicons.css">
+    <link rel="stylesheet" type="text/css" href="~/ThemeAssets/css/jquery.mCustomScrollbar.css">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div></div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
+    <div id="pcoded" class="pcoded">
+       
+        <div class="pcoded-container navbar-wrapper">
+               @Html.Partial("_NavBar")
+            
+                 @Html.Partial("_RightSideMenu")
+                    
+                 @Html.Partial("_StyleSelector")
+         </div>
+    </div>
+                       
+                   
+               
+
+    <!--[if lt IE 9]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="http://www.google.com/chrome/">
+                        <img src="~/ThemeAssets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="~/ThemeAssets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.opera.com">
+                        <img src="~/ThemeAssets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.apple.com/safari/">
+                        <img src="~/ThemeAssets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="~/ThemeAssets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+
+
+    <Scripts>
+        <script type="text/javascript" src="~/Scripts/bower_components/jquery/js/jquery.min.js"></script>
+        <script src="~/Scripts/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/popper.js/js/popper.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/modernizr/js/modernizr.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/modernizr/js/css-scrollbars.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/moment/js/moment.min.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/pages/widget/calender/pignose.calendar.min.js"></script>
+        <script src="~/Scripts/bower_components/c3/js/c3.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/classie/js/classie.js"></script>
+        <script src="~/ThemeAssets/pages/chart/knob/jquery.knob.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/pages/widget/jquery.sparkline.js"></script>
+        <script src="~/Scripts/bower_components/d3/js/d3.js"></script>
+        <script src="~/Scripts/bower_components/rickshaw/js/rickshaw.js"></script>
+        <script src="~/Scripts/bower_components/raphael/js/raphael.min.js"></script>
+        <script src="~/Scripts/bower_components/morris.js/js/morris.js"></script>
+
+        <script src="~/ThemeAssets/pages/chart/float/jquery.flot.js"></script>
+        <script src="~/ThemeAssets/pages/chart/float/jquery.flot.categories.js"></script>
+        <script src="~/ThemeAssets/pages/chart/float/jquery.flot.pie.js"></script>
+
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/horizontal-timeline/js/main.js"></script>
+
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/amchart/js/amcharts.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/amchart/js/serial.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/amchart/js/light.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/amchart/js/custom-amchart.js"></script>
+
+        <script type="text/javascript" src="~/Scripts/bower_components/i18next/js/i18next.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js"></script>
+        <script type="text/javascript" src="~/Scripts/bower_components/jquery-i18next/js/jquery-i18next.min.js"></script>
+
+        <script type="text/javascript" src="~/ThemeAssets/pages/dashboard/custom-dashboard.js"></script>
+        <script type="text/javascript" src="~/ThemeAssets/js/script.js"></script>
+
+        <script src="~/ThemeAssets/js/pcoded.min.js"></script>
+        <script src="~/ThemeAssets/js/demo-12.js"></script>
+        <script src="~/ThemeAssets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="~/ThemeAssets/js/jquery.mousewheel.min.js"></script>
+    </Scripts>
+    @RenderBody()
 </body>
+
+<!-- Mirrored from html.codedthemes.com/mash-able/dark/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 25 Nov 2018 18:53:52 GMT -->
 </html>
