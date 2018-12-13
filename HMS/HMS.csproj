@@ -126,7 +126,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1485,6 +1487,7 @@
     <Content Include="ThemeAssets\pages\form-masking\autoNumeric.js" />
     <Content Include="ThemeAssets\pages\form-masking\form-mask.js" />
     <Content Include="ThemeAssets\pages\form-masking\inputmask.js" />
+    <Content Include="ThemeAssets\pages\form-masking\jquery-input-mask-phone-number.js" />
     <Content Include="ThemeAssets\pages\form-masking\jquery.inputmask.js" />
     <Content Include="ThemeAssets\pages\form-validation\form-validation.js" />
     <Content Include="ThemeAssets\pages\form-validation\validate.js" />
@@ -1715,10 +1718,13 @@
     <Content Include="ThemeAssets\pages\jquery.filer\fonts\jquery.filer-icons\jquery-filer.ttf" />
     <Content Include="ThemeAssets\pages\jquery.filer\fonts\jquery.filer-icons\jquery-filer.woff" />
     <Content Include="ThemeAssets\pages\jquery.filer\fonts\jquery.filer-icons\jquery-filerd41d.eot" />
+    <Content Include="Views\Patient\AddPatient.cshtml" />
+    <Content Include="Views\Shared\bodyContainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Doctors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
