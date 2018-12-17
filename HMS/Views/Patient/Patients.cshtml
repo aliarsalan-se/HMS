@@ -1,0 +1,100 @@
+﻿@model IEnumerable<HMS.Models.Patient>
+@{
+    ViewBag.Title = "PatientList";
+    ViewBag.PageCaption = "CSIS Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/ThemeAssets/pages/toolbar/custom-toolbar.css" rel="stylesheet" />
+<link href="~/ThemeAssets/pages/toolbar/jquery.toolbar.css" rel="stylesheet" />
+<script src="~/ThemeAssets/pages/toolbar/jquery.toolbar.min.js"></script>
+<script src="~/ThemeAssets/pages/toolbar/custom-toolbar.js"></script>
+<style>
+    #dataTableId_wrapper {
+        width: 100%;
+    }
+
+    thead {
+        color: white;
+        width:20px;
+    }
+    .c1{
+        width:100px
+    }
+</style>
+<div class="pcoded-main-container" style="margin-top:56px">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <div class="page-body row">
+                            <div style="width:100%; margin:0 auto;" class="row">
+                                <table id="dataTableId" style="width:100%" class="table table-bordered table-primary"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var List;
+    $(function () {
+        List = {
+            dt: null,
+
+            init: function () {
+                dt = $('#dataTableId').DataTable({
+                    "serverSide": true,
+                    "processing": true,
+                    "ajax": {
+                        "url": "@Url.Action("Get", "Patient")"
+                    },
+                    "columns": [
+                        { "data": "PatientID" },
+                        { "title": "Name", "data": "Name", "searchable": true },
+                        { "title": "Gender", "data": "Gender", "searchable": true },
+                        { "title": "Date of Birth", "data": "DOB", "searchable": true },
+                        { "title": "Employee Number", "data": "EmployeeNumber", "searchable": true },
+                        { "title": "Reg Date", "data": "RegistrationDate", "searchable": true }
+                    ],
+                    "columnDefs": [
+                        {
+                            "targets": [0],
+                            "visible": false
+                            
+                        },
+                        {
+                            "targets": [4,3,5,2],
+                            "width":"100px"
+                        },
+                        {
+                            "targets": [-1],
+                            "width":"100px"
+                        },
+                        {
+                            "targets": [1],
+                            "width": "150px"
+                        },
+                        {
+                            "render": function (data, type, row) {
+                                var inner = '<a class="btn btn-primary btn-xs edit" data-id="' + row.PatientID + '"href="/Patient/MakeAppointment/' + row.PatientID + '">Make Appointment</a>' 
+                                 
+                                return inner;
+                            },
+                            "targets": 6
+                        }
+                    ],
+                });
+
+            }
+        }
+
+        // initialize the datatables
+        List.init();
+    });
+</script>
+<script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
