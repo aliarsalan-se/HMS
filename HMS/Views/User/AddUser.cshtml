@@ -1,6 +1,7 @@
-﻿@model HMS.Models.Patient
+﻿@model HMS.Models.User
+
 @{
-    ViewBag.Title = "MakeAppointment";
+    ViewBag.Title = "AddUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -8,6 +9,16 @@
         width: 146.750px;
         color: #fff;
     }
+    .ctd {
+        width: 700px;
+        padding: 4px 2px 2px 10px;
+        font-weight: bold;
+    }
+    .Button-group {
+        width: 146.750px;
+        color: #fff;
+    }
+    
 </style>
 <div class="pcoded-main-container" style="margin-top:56px">
     <div class="pcoded-wrapper">
@@ -23,7 +34,7 @@
                                             <div class="col-md-12">
                                                 <div id="wizard">
                                                     <section>
-                                                        <fieldset class="tabContent" id="Appointment" style="width:100%">
+                                                        <fieldset class="tabContent" id="Diagnosis" style="width:100%">
                                                             <div class="card-block">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
@@ -33,43 +44,57 @@
                                                                                     @Html.AntiForgeryToken()
                                                                                     <table class="table col-md-12 table-bordered">
                                                                                         <tr>
-                                                                                            <td style="border-bottom:none;padding-bottom:0" class="ctd">
-                                                                                                <div class="form-group row col-sm-12">
+                                                                                            <td class="ctd" style="border-bottom:none;padding-bottom:0" >
+                                                                                                <div class="col-sm-12 form-group row">
                                                                                                     <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="PatientName" class="block" style="line-height:50px">Patient :</label>
+                                                                                                        <label for="EmployeeNumber" class="block" style="line-height:50px">Employee #:</label>
                                                                                                     </div>
                                                                                                     <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input type="text" id="PatientName" name="PatientName" class="required form-control form-control-inverse" onclick="check()" readonly />
+                                                                                                        <input type="text" id="EmployeeNumber" name="EmployeeNumber" placeholder="Users Employee Number" class="required form-control form-control-inverse" />
                                                                                                     </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
-                                                                                                        <label for="Name" class="block" style="line-height:50px">Doctor:</label>
+                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                        <label for="Role" class="block" style="line-height:50px">Role:</label>
                                                                                                     </div>
                                                                                                     <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <select type="text" id="DoctorName" name="DoctorName" class="required form-control form-control-inverse" />
+                                                                                                        <select type="text" id="Role" name="Role" class="required form-control form-control-inverse" />
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td style="border-top:none;padding-top:0" class="ctd">
+                                                                                            <td class="ctd" style="border-top:none;padding-top:0" >
                                                                                                 <div class="form-group row col-sm-12">
                                                                                                     <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="Date" class="block" style="line-height:50px">Date :</label>
+                                                                                                        <label for="EmailAddress" class="block" style="line-height:50px">Email :</label>
                                                                                                     </div>
                                                                                                     <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input onfocus="this.type='date'" id="Date" name="Date" placeholder="Today's Date" class="required form-control form-control-inverse" />
+                                                                                                        <input type="text" id="EmailAddress" name="EmailAddress" class="required form-control form-control-inverse" />
                                                                                                     </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
-                                                                                                        <label for="Name" class="block" style="line-height:50px">Time:</label>
+                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                        <label for="PhoneNum" class="block" style="line-height:50px">Phone :</label>
                                                                                                     </div>
                                                                                                     <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <input type="time" id="Time" name="Time" class="required form-control form-control-inverse" />
+                                                                                                        <input type="text" id="PhoneNum" name="PhoneNum" class="required form-control form-control-inverse" />
                                                                                                     </div>
                                                                                                 </div>
-                                                                                                <div class="form-group col-sm-12 form-group row">
+                                                                                                <div class="form-group row col-sm-12">
+                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                        <label for="UserName" class="block" style="line-height:50px">UserName :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
+                                                                                                        <input type="text" id="UserName" name="UserName" placeholder="Unique User Name" class="required form-control form-control-inverse" />
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                        <label for="Password" class="block" style="line-height:50px">Password :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-5" style="padding-left:5px">
+                                                                                                        <input type="text" id="Password" name="Password" placeholder="atleast 6 characters" class="required form-control form-control-inverse" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row col-sm-12">
                                                                                                     <div class="col-sm-9"></div>
-                                                                                                    <div class="col-sm-3" >
-                                                                                                        <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Make  Appointment</button>
+                                                                                                    <div class="col-sm-3" style="padding-left:5px">
+                                                                                                        <button class="btn-primary btn-sm Button-group">Submit</button>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </td>
@@ -97,61 +122,21 @@
     </div>
 </div>
 <script>
-    var patient = '@Model.Name.ToString()';
-    $(document).ready(function () {
-        var now = new Date();
-        var day = ("0" + now.getDate()).slice(-2);
-        var month = ("0" + (now.getMonth() + 1)).slice(-2);
-        var today = (month) + "/" + (day) + "/" + now.getFullYear();
-
-        $('#PatientName').val(patient);
-        $('#Date').val(today);
-        $('#DoctorName').html('');
+    $('#Role').html('');
         var options = '';
         $.ajax({
-                url: '@Url.Action("GetDoctors", "Doctors")',
+                url: '@Url.Action("Roles", "User")',
                      type: "GET",
                      cache:false,
                      success: function (result) {
                          var options = '';
-                         
-                         options += '<option value="">Select</option>';
+
+                         options += '<option value="Select">Select Role</option>';
                          for (var i = 0; i < result.length; i++) {
                              options += '<option value="' + result[i] + '">' + result[i] + '</option>';
                          }
-                         $('#DoctorName').append(options); 
+                         $('#Role').append(options);
                   }
-               });
-
     });
-
-    function MakeAppointment() {
-        var PatientId, Doctorid, date, time;
-        PatientId = '@Model.PatientID';
-        Doctorid = $('#DoctorName').val();
-        date = $('#Date').val();
-        time = $('#Time').val();
-        debugger
-        if (Doctorid == '' || date == '' || time == '') {
-            alert('Please Fill out All Fields');
-        }    
-        else {
-            //Sending Dating to Controller
-            var fd = new FormData();
-            fd.append("PId", PatientId);
-            fd.append("DId", Doctorid);
-            fd.append("ADate", date);
-            fd.append("ATime", time);
-            $.ajax({
-                url: '@Url.Action("MakeAppointment","Patient")',
-                type: 'POST',
-                cache: false,
-                contentType: false,
-                processData: false,
-                data: fd,
-                success: function () {
-                }
-            });
-        }
-    }
+    $("#PhoneNum").inputmask({ "mask": "(03)-99-99999999" });
 </script>

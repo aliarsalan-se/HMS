@@ -31,8 +31,6 @@ namespace HMS.Models
         public string image { get; set; }
     
         public virtual Department Department { get; set; }
-        public virtual Employee Employee1 { get; set; }
-        public virtual Employee Employee2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Patient> Patients { get; set; }
     }

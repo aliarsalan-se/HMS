@@ -26,6 +26,7 @@ namespace HMS.Models
         public string Password { get; set; }
         public string EmailAddress { get; set; }
         public string PhoneNum { get; set; }
+        public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }

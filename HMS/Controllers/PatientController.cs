@@ -11,6 +11,10 @@ namespace HMS.Controllers
 {
     public class PatientController : Controller
     {
+        public ActionResult Appoitnments()
+        {
+            return View();
+        }
         public ActionResult Patients()
         {
             return View();
@@ -140,6 +144,62 @@ namespace HMS.Controllers
             var model = db.Patients.Where(p => p.PatientID == id).FirstOrDefault();
             return View(model);
         }
+
+        [HttpPost]
+        public void MakeAppointment(FormCollection fc)
+        {
+            Appointment apt = new Appointment();
+            apt.PatientID = Convert.ToInt32(fc["PId"]);
+            apt.DoctorID = 1;
+            apt.Date = fc["ADate"];
+            apt.Time = fc["ATime"];
+            db.Appointments.Add(apt);
+            db.SaveChanges();
+        }
+
+
+        public ActionResult GetAppointments([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
+        {
+            var TodayDate = DateTime.Now.Date;
+            IQueryable<Appointment> query = db.Appointments;
+            var totalCount = query.Count();
+            #region Filtering
+            //Apply filters for searching
+            if (requestModel.Search.Value != string.Empty)
+                {
+                    var value = requestModel.Search.Value.Trim();
+                    query = query.Where(p => p.Time.Contains(value)
+                                       );
+                }
+
+            var filteredCount = query.Count();
+
+            #endregion Filtering
+
+            #region Sorting
+            // Sorting
+            var sortedColumns = requestModel.Columns.GetSortedColumns();
+            var orderByString = String.Empty;
+
+            foreach (var column in sortedColumns)
+            {
+                orderByString += orderByString != String.Empty ? "," : "";
+                orderByString += (column.Data) + (column.SortDirection == Column.OrderDirection.Ascendant ? " asc" : " desc");
+            }
+
+            query = query.OrderBy(orderByString == string.Empty ? "AppointmentID asc" : orderByString);
+
+            #endregion Sorting
+
+            // Paging
+            query = query.Skip(requestModel.Start).Take(requestModel.Length);
+
+
+            var data = query.ToList();
+
+            return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
+        }
+
     }
 
 

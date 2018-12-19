@@ -5,24 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5024cd87dbae4d48adf10274f8116568" Name="Diagram1">
-        <EntityTypeShape EntityType="HMS.Appointment" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Department" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Diagnosi" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Employee" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Medicine" Width="1.5" PointX="9.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Patient" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.Prescription" Width="1.5" PointX="12" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HMS.User" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <AssociationConnector Association="HMS.FK_Appointment_Patient" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Appointment_User" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Diagnosis_Appointment" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Employee_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Diagnosis_Patient" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Prescription_Diagnosis" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Employee_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Patient_Employee" ManuallyRouted="false" />
-        <AssociationConnector Association="HMS.FK_Prescription_Medicine" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HMS.Appointment" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="HMS.Department" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="HMS.Diagnosi" Width="1.5" PointX="9.75" PointY="1.125" />
+        <EntityTypeShape EntityType="HMS.Employee" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="HMS.Medicine" Width="1.5" PointX="9.75" PointY="5.5" />
+        <EntityTypeShape EntityType="HMS.Patient" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="HMS.Prescription" Width="1.5" PointX="12" PointY="1.375" />
+        <EntityTypeShape EntityType="HMS.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HMS.User" Width="1.5" PointX="5.25" PointY="5.375" />
+        <AssociationConnector Association="HMS.FK_Appointment_Patient" />
+        <AssociationConnector Association="HMS.FK_Appointment_User" />
+        <AssociationConnector Association="HMS.FK_Diagnosis_Appointment" />
+        <AssociationConnector Association="HMS.FK_Employee_Departments" />
+        <AssociationConnector Association="HMS.FK_Diagnosis_Patient" />
+        <AssociationConnector Association="HMS.FK_Prescription_Diagnosis" />
+        <AssociationConnector Association="HMS.FK_Patient_Employee" />
+        <AssociationConnector Association="HMS.FK_Prescription_Medicine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
