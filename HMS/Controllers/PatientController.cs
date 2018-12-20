@@ -1,6 +1,5 @@
 ﻿using HMS.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -133,8 +132,16 @@ namespace HMS.Controllers
             // Paging
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
 
-
-            var data = query.ToList();
+            var data = query.Select(a => new
+            {
+                PatientID = a.PatientID,
+                Name = a.Name,
+                DOB = a.DOB.ToString(),
+                EmployeeNumber = a.EmployeeNumber,
+                RegistrationDate = a.RegistrationDate.ToString(),
+                Gender=a.Gender
+            }).ToList();
+            //var data = query.ToList();
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }
@@ -195,7 +202,13 @@ namespace HMS.Controllers
             query = query.Skip(requestModel.Start).Take(requestModel.Length);
 
 
-            var data = query.ToList();
+            var data = query.Select(a => new {
+                PatientName = a.Patient.Name,
+                DoctorName =a.User.UserName,
+                Date=a.Date,
+                Time=a.Time,
+                AppointmentID=a.AppointmentID
+            }).ToList();
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }

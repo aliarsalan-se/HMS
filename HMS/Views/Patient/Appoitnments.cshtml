@@ -53,14 +53,14 @@
                     "columns": [
                         { "data": "AppointmentID" },
                         { "title": "Appointment", "data": "AppointmentID", "searchable": true },
-                        { "title": "Patient", "data": "PatientID", "searchable": true },
-                        { "title": "Doctor", "data": "DoctorID", "searchable": true },
+                        { "title": "Patient", "data": "PatientName", "searchable": true },
+                        { "title": "Doctor", "data": "DoctorName", "searchable": true },
                         { "title": "Date", "data": "Date", "searchable": true },
                         { "title": "Time", "data": "Time", "searchable": true }
                     ],
                     "columnDefs": [
                         {
-                            "targets": [0],
+                            "targets": [0,1],
                             "visible": false
 
                         },
