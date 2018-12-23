@@ -26,17 +26,17 @@ namespace HMS.Controllers
         {
             return View();
         }
-     [HttpPost]
-        public JsonResult Test(string Emp)
-        {
+     //[HttpPost]
+     //   public JsonResult Test(string Emp)
+     //   {
 
-            User user = new User();
-            user.FirstName = "10/02/1995";
-            user.LastName = "Male";
+     //       User user = new User();
+     //       user.FirstName = "10/02/1995";
+     //       user.LastName = "Male";
            
 
-            return Json(user, JsonRequestBehavior.AllowGet);
-        }
+     //       return Json(user, JsonRequestBehavior.AllowGet);
+     //   }
         [HttpPost]
         public ContentResult AddPatient(FormCollection fc, HttpPostedFileBase Img)
         {
@@ -157,7 +157,7 @@ namespace HMS.Controllers
         {
             Appointment apt = new Appointment();
             apt.PatientID = Convert.ToInt32(fc["PId"]);
-            apt.DoctorID = 1;
+            apt.DoctorID = Convert.ToInt32(fc["DId"]);
             apt.Date = fc["ADate"];
             apt.Time = fc["ATime"];
             db.Appointments.Add(apt);
@@ -167,7 +167,7 @@ namespace HMS.Controllers
 
         public ActionResult GetAppointments([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
-            var TodayDate = DateTime.Now.Date;
+            
             IQueryable<Appointment> query = db.Appointments;
             var totalCount = query.Count();
             #region Filtering
@@ -213,13 +213,18 @@ namespace HMS.Controllers
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult Diagnose(int id)
+        {
+            var model = db.Patients.Where(p => p.PatientID == id).FirstOrDefault();
+            return View(model);
+        } 
     }
 
 
 
-    internal class User
-    {
-        public String FirstName { get; set; }
-        public String LastName{ get; set; }
-    }
+    //internal class User
+    //{
+    //    public String FirstName { get; set; }
+    //    public String LastName{ get; set; }
+    //}
 }

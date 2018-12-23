@@ -106,29 +106,37 @@
 
         $('#PatientName').val(patient);
         $('#Date').val(today);
-        $('#DoctorName').html('');
+          $('#DoctorName').html('');
         var options = '';
-        $.ajax({
-                url: '@Url.Action("GetDoctors", "Doctors")',
-                     type: "GET",
-                     cache:false,
-                     success: function (result) {
+    $.ajax({
+        url: '@Url.Action("GetDoctors", "Doctors")',
+        type: "GET",
+        cache: false,
+        
+                      success: function (data) {
                          var options = '';
-                         
-                         options += '<option value="">Select</option>';
-                         for (var i = 0; i < result.length; i++) {
-                             options += '<option value="' + result[i] + '">' + result[i] + '</option>';
-                         }
+                         debugger
+                          options += '<option value="Select">Select</option>';
+                          $.each(data, function (id, dr) {
+                              options += '<option value="' + dr.ID + '">' + dr.UserName + '</option>';
+                          });
+                         //for (var i = 0; i < result.length; i++) {
+                         //    options += '<option value="' + result[i] + '">' + result[i] + '</option>';
+                         //}
                          $('#DoctorName').append(options); 
-                  }
+                       },
+            error: function (response) {
+                debugger
+                alert('Error');
+            }
                });
-
     });
 
     function MakeAppointment() {
         var PatientId, Doctorid, date, time;
         PatientId = '@Model.PatientID';
         Doctorid = $('#DoctorName').val();
+        debugger
         date = $('#Date').val();
         time = $('#Time').val();
         debugger

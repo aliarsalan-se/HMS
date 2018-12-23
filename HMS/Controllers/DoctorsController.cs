@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HMS.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,15 +9,21 @@ namespace HMS.Controllers
 {
     public class DoctorsController : Controller
     {
+        private HospitalManagementSystemEntities1 db = new HospitalManagementSystemEntities1();
         // GET: Doctors
         [HttpGet]
        public JsonResult GetDoctors()
         {
-            var doctors = new List<string>();
-            doctors.Add("Peter");
-            doctors.Add("John Snow");
-            doctors.Add("Oliver");
-            return Json(doctors, JsonRequestBehavior.AllowGet);
+            IEnumerable<User> modelList = new List<User>();
+            var  dr = db.Users.ToList();
+            modelList = dr.Select(x =>
+                     new User()
+                     {
+                         ID = x.ID,
+                         UserName = x.UserName
+                     });
+            
+            return Json(modelList, JsonRequestBehavior.AllowGet);
         }
     }
 }

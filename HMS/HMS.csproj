@@ -1821,6 +1821,7 @@
     <Content Include="Views\Patient\MakeAppointment.cshtml" />
     <Content Include="Views\Patient\Appoitnments.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
+    <Content Include="Views\Patient\Diagnose.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

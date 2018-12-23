@@ -1,0 +1,245 @@
+﻿@model HMS.Models.Patient
+@{
+    ViewBag.Title = "Diagnose";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .ctab {
+        background-color: #0073aa;
+        outline: 1px solid #fff;
+        outline-color: rgb(255, 255, 255);
+        outline-style: solid;
+        outline-width: 1px;
+        outline-offset: -7px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        line-height: 20px;
+        display: block;
+        /*width: auto;*/
+        margin-right: 10px;
+    }
+
+        .ctab:hover {
+            display: block;
+            /*width: auto;*/
+            text-decoration: none;
+            outline: none;
+        }
+
+    .active1 {
+        background-color: #005780;
+    }
+
+    .tabContent {
+        display: none;
+    }
+    .roundedOne {
+        width: 25px;
+        height: 25px;
+        position: relative;
+        margin: 20px auto;
+        background: #fcfff4;
+        background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+        border-radius: 50px;
+        box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    }
+    .minput {
+        padding: 0;
+        border: 0;
+        height: 50px;
+        width: 195px
+    }
+    #crow{
+        padding-bottom:0px
+    }
+</style>
+<div class="pcoded-main-container" style="margin-top:56px">
+    <div class="pcoded-wrapper">
+        <div class="pcoded-content">
+            <div class="pcoded-inner-content">
+                <div class="main-body">
+                    <div class="page-wrapper">
+                        <div class="page-body row">
+                            <div class="col-sm-12">
+                                <div class="card">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="wizard">
+                                                    <section>
+                                                        <div class="nav nav-tabs md-tabs col-sm-12">
+                                                            <button class="btn-xlg primary-btn ctab tablinks col-sm-2" role="tab" onclick="tabselector(event,'Diagnosis')" id="diag">3. Diagnosis<i class="icofont icofont-arrow-right"></i></button>
+                                                            <button class="btn-xlg primary-btn ctab tablinks col-sm-2" role="tab" onclick="tabselector(event,'Prescription')" id="pres">4. Prescription <i class="icofont icofont-arrow-right"></i></button>
+                                                            
+                                                        </div>
+
+                                                        <fieldset class="tabContent" id="Diagnosis" style="width:100%">
+                                                            <div class="card-block">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div id="wizard">
+                                                                            <section>
+                                                                                <div class="wizard-form" id="example-advanced-form">
+                                                                                    @Html.AntiForgeryToken()
+                                                                                    <table class="table col-md-12 table-bordered">
+                                                                                        <tr>
+                                                                                            <td class="ctd">
+                                                                                                <div class="form-group row col-sm-12">
+                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                        <label for="PatientName" class="block" style="line-height:50px">Patient :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px;">
+                                                                                                        <input type="text" id="PatientName" name="PatientName" class="required form-control form-control-inverse" readonly />
+                                                                                                    </div><div class="col-sm-1"></div>
+                                                                                                    <div class="col-sm-2" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                        <label for="DoctorName" class="block" style="line-height:50px">Doctor Name :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px">
+                                                                                                        <input type="text" id="DoctorName" name="DoctorName" class="required form-control form-control-inverse" readonly />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row col-sm-12">
+                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                        <label for="Temperature" class="block" style="line-height:50px">Temp.  :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px;">
+                                                                                                        <input type="text" id="Temperature" name="Temperature" class="required form-control form-control-inverse" />
+                                                                                                    </div><div class="col-sm-1"></div>
+                                                                                                    <div class="col-sm-2" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                        <label for="BloodPressure" class="block" style="line-height:50px">Blood Pressure:</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px">
+                                                                                                        <input type="text" id="BloodPressure" name="BloodPressure" class="required form-control form-control-inverse" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="form-group row col-sm-12">
+                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                        <label for="Symptoms" class="block" style="line-height:50px">Symptoms :</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px">
+                                                                                                        <textarea id="Symptoms" name="Symptoms" class="required form-control form-control-inverse"></textarea>
+                                                                                                    </div><div class="col-sm-1"></div>
+                                                                                                    <div class="col-sm-2" style="padding-left:5px;padding-right:2px;text-align:center">
+                                                                                                        <label for="DiagnoseProblem" class="block" style="line-height:50px">DiagnoseProblem:</label>
+                                                                                                    </div>
+                                                                                                    <div class="col-sm-4" style="padding-left:5px">
+                                                                                                        <textarea id="DiagnoseProblem" name="DiagnoseProblem" class="required form-control form-control-inverse"></textarea>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr></tr>
+                                                                                    </table>
+                                                                                    <div class="form-group col-sm-12 form-group row">
+                                                                                        <div class="col-sm-9"></div>
+                                                                                        <div class="col-sm-3">
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Prescribe Medicines</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+
+                                                        <fieldset class="tabContent" id="Prescription" style="width:100%">
+                                                            <div class="card-block">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <div id="wizard">
+                                                                            <section>
+                                                                                <div class="wizard-form" id="example-advanced-form">
+                                                                                    @Html.AntiForgeryToken()
+                                                                                    <table class="table col-md-12 table-bordered " id="maintable">
+                                                                                        <tr>
+                                                                                            <th align="center">Medicine Name</th>
+                                                                                            <th align="center">Dosage</th>
+                                                                                            <th align="center">Quantity</th>
+                                                                                            <th align="center">Morning</th>
+                                                                                            <th align="center">Evening</th>
+                                                                                            <th align="center">Night</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="text" name="MedicineName" id="MedicineName" class="minput" onclick="Addnew()" />
+                                                                                            </td>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="text" name="Dosage" id="Dosage" class="minput" />
+                                                                                            </td>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="text" name="Quantity" id="Quantity" class="minput" />
+                                                                                            </td>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="checkbox" id="Morning" class="roundedOne form-control" />
+                                                                                            </td>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="checkbox" id="Evening" class="roundedOne form-control" />
+                                                                                            </td>
+                                                                                            <td style="width: 192px;padding:0">
+                                                                                                <input type="checkbox" id="Night" class="roundedOne form-control" />
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <div class="form-group col-sm-12 form-group row" style="padding-right:0px; margin-right:0px">
+                                                                                        <div class="col-sm-9"></div>
+                                                                                        <div class="col-sm-3" style="left:40px">
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Make  Appointment</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </section>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </section>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var patient = '@Model.Name.ToString()';
+    $('#PatientName').val(patient);
+
+    function tabselector(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabContent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace("active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        if (evt != null)
+            evt.currentTarget.className += "btn-xlg primary-btn ctab tablinks col-sm-2 active1";
+
+    }
+
+    function Addnew() {
+        var markup = "<tr><td style='width: 192px; padding: 0'> <input type='text' id='MedicineName' class='minput' onclick='Addnew()'/></td>" +
+            "<td style='width: 192px; padding: 0'> <input type='text' id='Dosage' class='minput'/></td>" +
+            "<td style='width: 192px; padding: 0'><input type='text' id='Quantity'  class='minput'/></td>" +
+            "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Morning' class='roundedOne form-control'/> </td>" +
+            "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Evening' class='roundedOne form-control'/>  </td>" +
+            "<td style='width: 192px; padding: 0'><input type='checkbox' id='Night'  class='roundedOne form-control'/></td> </tr>";
+
+
+
+        $("#maintable").append(markup);
+    }
+</script>
