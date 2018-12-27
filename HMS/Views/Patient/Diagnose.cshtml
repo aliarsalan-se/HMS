@@ -152,7 +152,6 @@
                                                                         <div id="wizard">
                                                                             <section>
                                                                                 <div class="wizard-form" id="example-advanced-form">
-                                                                                    @Html.AntiForgeryToken()
                                                                                     <table  class="table col-md-12 table-bordered " id="maintable">
                                                                                         <tr>
                                                                                             <th align="center">Medicine Name</th>
@@ -164,13 +163,13 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td style="width: 192px;padding:0">
-                                                                                                <input type="text" name="MedicineName" id="MedicineName" class="minput" onclick="Addnew()" />
+                                                                                                <input type="text" name="MedicineName" id="MedicineName" class="minput" />
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
                                                                                                 <input type="text" name="Dosage" id="Dosage" class="minput" />
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
-                                                                                                <input type="text" name="Quantity" id="Quantity" class="minput" />
+                                                                                                <input type="text" name="Quantity" id="Quantity" class="minput" onclick="Addnew()"/>
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
                                                                                                 <input type="checkbox" id="Morning" class="roundedOne form-control" />
@@ -246,16 +245,30 @@
     }
 
     function Prescribe() {
-        debugger
-        var meds = new Array();
-        $("#maintable Tbody tr").each(function () {
-            var row = $(this);
-            var med = {};
-            med.MedicineName = row.find("td").eq(0).html();
-            med.Dosage = row.find("td").eq(1).html();
-            med.Quantity = row.find("td").eq(2).html();
-            meds.push(med);
-            debugger
+        
+        var data = [];
+        var table = $("#maintable");
+
+        table.find('tr').each(function (i) {
+            var $tds = $(this).find('td input'),
+                MedicineName = $tds.eq(0).val(),
+                Dosage= $tds.eq(1).val(),
+                Quantity = $tds.eq(2).val();
+            var Time="";
+            if ($tds.eq(3).is(":checked"))
+                Time = "m";
+            if ($tds.eq(4).is(":checked"))
+                Time = Time + "e";
+            if ($tds.eq(5).is(":checked"))
+                Time = Time + "n";
+            // do something with productId, product, Quantity
+            
+            //alert('Row ' + (i + 1) + ':\nId: ' + MedicineName
+            //    + '\nProduct: ' + Dosage
+            //    + '\nQuantity: ' + Quantity);
+            data.push({ MName: MedicineName, dosage: Dosage, quantity: Quantity, time: Time });
+            
         });
+                debugger
     }
 </script>
