@@ -1,4 +1,4 @@
-﻿@model HMS.Models.Patient
+﻿@model HMS.Models.Appointment
 @{
     ViewBag.Title = "Diagnose";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -134,7 +134,7 @@
                                                                                     <div class="form-group col-sm-12 form-group row">
                                                                                         <div class="col-sm-9"></div>
                                                                                         <div class="col-sm-3">
-                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Prescribe Medicines</button>
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="Prescribe()">Prescribe Medicines</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -153,7 +153,7 @@
                                                                             <section>
                                                                                 <div class="wizard-form" id="example-advanced-form">
                                                                                     @Html.AntiForgeryToken()
-                                                                                    <table class="table col-md-12 table-bordered " id="maintable">
+                                                                                    <table  class="table col-md-12 table-bordered " id="maintable">
                                                                                         <tr>
                                                                                             <th align="center">Medicine Name</th>
                                                                                             <th align="center">Dosage</th>
@@ -186,7 +186,7 @@
                                                                                     <div class="form-group col-sm-12 form-group row" style="padding-right:0px; margin-right:0px">
                                                                                         <div class="col-sm-9"></div>
                                                                                         <div class="col-sm-3" style="left:40px">
-                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Make  Appointment</button>
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="Prescribe();" >Make  Appointment</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -211,8 +211,10 @@
     </div>
 </div>
 <script>
-    var patient = '@Model.Name.ToString()';
+    var patient = '@Model.Patient.Name.ToString()' ;
+    var dr= '@Model.User.UserName.ToString()' ;
     $('#PatientName').val(patient);
+    $('#DoctorName').val(dr);
 
     function tabselector(evt, tabName) {
         var i, tabcontent, tablinks;
@@ -241,5 +243,19 @@
 
 
         $("#maintable").append(markup);
+    }
+
+    function Prescribe() {
+        debugger
+        var meds = new Array();
+        $("#maintable Tbody tr").each(function () {
+            var row = $(this);
+            var med = {};
+            med.MedicineName = row.find("td").eq(0).html();
+            med.Dosage = row.find("td").eq(1).html();
+            med.Quantity = row.find("td").eq(2).html();
+            meds.push(med);
+            debugger
+        });
     }
 </script>

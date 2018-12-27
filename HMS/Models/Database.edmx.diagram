@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="HMS.Patient" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="HMS.Prescription" Width="1.5" PointX="12" PointY="1.375" />
         <EntityTypeShape EntityType="HMS.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="HMS.User" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="HMS.User" Width="1.5" PointX="5.25" PointY="5.25" />
         <AssociationConnector Association="HMS.FK_Appointment_Patient" />
         <AssociationConnector Association="HMS.FK_Appointment_User" />
         <AssociationConnector Association="HMS.FK_Diagnosis_Appointment" />

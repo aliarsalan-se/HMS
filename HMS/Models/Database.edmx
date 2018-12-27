@@ -105,6 +105,7 @@
           <Property Name="EmailAddress" Type="char" MaxLength="20" />
           <Property Name="PhoneNum" Type="char" MaxLength="20" />
           <Property Name="Role" Type="char" MaxLength="20" />
+          <Property Name="Image" Type="char" MaxLength="30" />
         </EntityType>
         <Association Name="FK_Appointment_Patient">
           <End Role="Patient" Type="Self.Patient" Multiplicity="0..1" />
@@ -479,6 +480,7 @@
           <Property Name="EmailAddress" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="PhoneNum" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="Role" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Appointments" Relationship="HMS.FK_Appointment_User" FromRole="User" ToRole="Appointment" />
         </EntityType>
         <Association Name="FK_Appointment_Patient">
@@ -707,6 +709,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="HMS.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="PhoneNum" ColumnName="PhoneNum" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />

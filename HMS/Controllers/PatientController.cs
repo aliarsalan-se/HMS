@@ -10,7 +10,10 @@ namespace HMS.Controllers
 {
     public class PatientController : Controller
     {
-        public ActionResult Appoitnments()
+        //Global Variables
+        private HospitalManagementSystemEntities1 db = new HospitalManagementSystemEntities1();
+
+        public ActionResult Appointments()
         {
             return View();
         }
@@ -18,25 +21,12 @@ namespace HMS.Controllers
         {
             return View();
         }
-        //Global Variables
-        private HospitalManagementSystemEntities1 db = new HospitalManagementSystemEntities1();
-
         // GET: Patient
         public ActionResult AddPatient()
         {
             return View();
         }
-     //[HttpPost]
-     //   public JsonResult Test(string Emp)
-     //   {
-
-     //       User user = new User();
-     //       user.FirstName = "10/02/1995";
-     //       user.LastName = "Male";
-           
-
-     //       return Json(user, JsonRequestBehavior.AllowGet);
-     //   }
+     
         [HttpPost]
         public ContentResult AddPatient(FormCollection fc, HttpPostedFileBase Img)
         {
@@ -148,7 +138,7 @@ namespace HMS.Controllers
 
         public ActionResult MakeAppointment(int id)
         {
-            var model = db.Patients.Where(p => p.PatientID == id).FirstOrDefault();
+            var model = db.Patients.Where(p => p.PatientID== id).FirstOrDefault();
             return View(model);
         }
 
@@ -215,7 +205,7 @@ namespace HMS.Controllers
 
         public ActionResult Diagnose(int id)
         {
-            var model = db.Patients.Where(p => p.PatientID == id).FirstOrDefault();
+            var model = db.Appointments.Where(p => p.AppointmentID == id).FirstOrDefault();
             return View(model);
         } 
     }

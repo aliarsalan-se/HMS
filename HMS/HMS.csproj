@@ -434,11 +434,13 @@
     <Content Include="ThemeAssets\ajax\libs\underscore.js\1.8.3\underscore-min.js" />
     <Content Include="ThemeAssets\css\color\color-1.css" />
     <Content Include="ThemeAssets\css\component.css" />
+    <Content Include="ThemeAssets\css\extra_pages.css" />
     <Content Include="ThemeAssets\css\font-awesome.min.css" />
     <Content Include="ThemeAssets\css\fontAwesome.css" />
     <Content Include="ThemeAssets\css\ionicons.css" />
     <Content Include="ThemeAssets\css\jquery.mCustomScrollbar.css" />
     <Content Include="ThemeAssets\css\linearicons.css" />
+    <Content Include="ThemeAssets\css\Login.css" />
     <Content Include="ThemeAssets\css\mCSB_buttons.html" />
     <Content Include="ThemeAssets\css\pcoded-horizontal.min.css" />
     <Content Include="ThemeAssets\css\simple-line-icons.css" />
@@ -707,6 +709,7 @@
     <Content Include="ThemeAssets\icon\flag-icons\fonts\zm.svg" />
     <Content Include="ThemeAssets\icon\flag-icons\fonts\zw.svg" />
     <Content Include="ThemeAssets\icon\font-awesome\css\font-awesome.min.css" />
+    <Content Include="ThemeAssets\icon\font-awesome\favicon.ico" />
     <Content Include="ThemeAssets\icon\font-awesome\fonts\fontawesome-webfont3e6e.html" />
     <Content Include="ThemeAssets\icon\font-awesome\fonts\fontawesome-webfont3e6e.svg" />
     <Content Include="ThemeAssets\icon\icofont\css\icofont.css" />
@@ -734,6 +737,7 @@
     <Content Include="ThemeAssets\icon\weather-icons\font\weathericons-regular-webfont.html" />
     <Content Include="ThemeAssets\icon\weather-icons\font\weathericons-regular-webfontd41d.html" />
     <Content Include="ThemeAssets\icon\weather-icons\weather-custom.js" />
+    <Content Include="ThemeAssets\images\arrow.png" />
     <Content Include="ThemeAssets\images\auth\Logo-small-bottom.png" />
     <Content Include="ThemeAssets\images\auth\logo.png" />
     <Content Include="ThemeAssets\images\avatar-1.png" />
@@ -742,6 +746,7 @@
     <Content Include="ThemeAssets\images\avatar-4.png" />
     <Content Include="ThemeAssets\images\avatar-5.png" />
     <Content Include="ThemeAssets\images\avatar-blank.jpg" />
+    <Content Include="ThemeAssets\images\bg-01.jpg" />
     <Content Include="ThemeAssets\images\bg.jpg" />
     <Content Include="ThemeAssets\images\blog\blog-130.png" />
     <Content Include="ThemeAssets\images\blog\blog-r-1.jpg" />
@@ -812,6 +817,7 @@
     <Content Include="ThemeAssets\images\light-box\v4.jpg" />
     <Content Include="ThemeAssets\images\logo-blue.png" />
     <Content Include="ThemeAssets\images\logo.png" />
+    <Content Include="ThemeAssets\images\mail.png" />
     <Content Include="ThemeAssets\images\mega-menu\01.jpg" />
     <Content Include="ThemeAssets\images\mega-menu\02.jpg" />
     <Content Include="ThemeAssets\images\mega-menu\03.jpg" />
@@ -820,6 +826,7 @@
     <Content Include="ThemeAssets\images\mega-menu\06.jpg" />
     <Content Include="ThemeAssets\images\Modal\overflow.html" />
     <Content Include="ThemeAssets\images\Modal\overflow.jpg" />
+    <Content Include="ThemeAssets\images\pass.png" />
     <Content Include="ThemeAssets\images\pattern1.png" />
     <Content Include="ThemeAssets\images\pattern2.png" />
     <Content Include="ThemeAssets\images\pattern3.png" />
@@ -1819,9 +1826,10 @@
     <Content Include="Views\Shared\bodyContainer.cshtml" />
     <Content Include="Views\Patient\Patients.cshtml" />
     <Content Include="Views\Patient\MakeAppointment.cshtml" />
-    <Content Include="Views\Patient\Appoitnments.cshtml" />
+    <Content Include="Views\Patient\Appointments.cshtml" />
     <Content Include="Views\User\AddUser.cshtml" />
     <Content Include="Views\Patient\Diagnose.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

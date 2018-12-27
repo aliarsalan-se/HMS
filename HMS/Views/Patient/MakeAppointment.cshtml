@@ -27,57 +27,57 @@
                                                             <div class="card-block">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
-                                                                        <div id="wizard">
-                                                                            <section>
-                                                                                <div class="wizard-form" id="example-advanced-form">
-                                                                                    @Html.AntiForgeryToken()
-                                                                                    <table class="table col-md-12 table-bordered">
-                                                                                        <tr>
-                                                                                            <td style="border-bottom:none;padding-bottom:0" class="ctd">
-                                                                                                <div class="form-group row col-sm-12">
-                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="PatientName" class="block" style="line-height:50px">Patient :</label>
+                                                                            <div id="wizard">
+                                                                                <section>
+                                                                                    <div class="wizard-form" id="example-advanced-form">
+                                                                                        @Html.AntiForgeryToken()
+                                                                                        <table class="table col-md-12 table-bordered">
+                                                                                            <tr>
+                                                                                                <td style="border-bottom:none;padding-bottom:0" class="ctd">
+                                                                                                    <div class="form-group row col-sm-12">
+                                                                                                        <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                            <label for="PatientName" class="block" style="line-height:50px">Patient :</label>
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-5" style="padding-left:5px;">
+                                                                                                            <input type="text" id="PatientName" name="PatientName" class="required form-control form-control-inverse" onclick="check()" readonly />
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
+                                                                                                            <label for="Name" class="block" style="line-height:50px">Doctor:</label>
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-5" style="padding-left:5px">
+                                                                                                            <select type="text" id="DoctorName" name="DoctorName" class="required form-control form-control-inverse" />
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input type="text" id="PatientName" name="PatientName" class="required form-control form-control-inverse" onclick="check()" readonly />
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td style="border-top:none;padding-top:0" class="ctd">
+                                                                                                    <div class="form-group row col-sm-12">
+                                                                                                        <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
+                                                                                                            <label for="Date" class="block" style="line-height:50px">Date :</label>
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-5" style="padding-left:5px;">
+                                                                                                            <input onfocus="this.type='date'" id="Date" name="Date" placeholder="Today's Date" class="required form-control form-control-inverse" />
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
+                                                                                                            <label for="Name" class="block" style="line-height:50px">Time:</label>
+                                                                                                        </div>
+                                                                                                        <div class="col-sm-5" style="padding-left:5px">
+                                                                                                            <input type="time" id="Time" name="Time" class="required form-control form-control-inverse" />
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
-                                                                                                        <label for="Name" class="block" style="line-height:50px">Doctor:</label>
+                                                                                                    <div class="form-group col-sm-12 form-group row">
+                                                                                                        <div class="col-sm-9"></div>
+                                                                                                        <div class="col-sm-3">
+                                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Make  Appointment</button>
+                                                                                                        </div>
                                                                                                     </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <select type="text" id="DoctorName" name="DoctorName" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td style="border-top:none;padding-top:0" class="ctd">
-                                                                                                <div class="form-group row col-sm-12">
-                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="Date" class="block" style="line-height:50px">Date :</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input onfocus="this.type='date'" id="Date" name="Date" placeholder="Today's Date" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
-                                                                                                        <label for="Name" class="block" style="line-height:50px">Time:</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <input type="time" id="Time" name="Time" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group col-sm-12 form-group row">
-                                                                                                    <div class="col-sm-9"></div>
-                                                                                                    <div class="col-sm-3" >
-                                                                                                        <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick=" MakeAppointment()">Make  Appointment</button>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    </table>
-                                                                                </div>
-                                                                            </section>
-                                                                        </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </table>
+                                                                                    </div>
+                                                                                </section>
+                                                                            </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -115,7 +115,6 @@
         
                       success: function (data) {
                          var options = '';
-                         debugger
                           options += '<option value="Select">Select</option>';
                           $.each(data, function (id, dr) {
                               options += '<option value="' + dr.ID + '">' + dr.UserName + '</option>';
@@ -136,15 +135,13 @@
         var PatientId, Doctorid, date, time;
         PatientId = '@Model.PatientID';
         Doctorid = $('#DoctorName').val();
-        debugger
         date = $('#Date').val();
         time = $('#Time').val();
-        debugger
         if (Doctorid == '' || date == '' || time == '') {
             alert('Please Fill out All Fields');
         }    
         else {
-            //Sending Dating to Controller
+           // Sending Data to Controller
             var fd = new FormData();
             fd.append("PId", PatientId);
             fd.append("DId", Doctorid);
@@ -157,7 +154,9 @@
                 contentType: false,
                 processData: false,
                 data: fd,
-                success: function () {
+                success: function (data) {
+                    alert('Appointment Made');
+                    document.location = '@Url.Action("Appointments","Patient")';
                 }
             });
         }

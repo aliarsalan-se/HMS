@@ -29,8 +29,8 @@
                 <ul class="nav-right">  
                     <li class="user-profile header-notification">
                         <a href="#!">
-                            <img src="~/ThemeAssets/images/user.png" alt="User-Profile-Image">
-                            <span>Admin</span>
+                            <img src="@HttpContext.Current.Session["Picture"].ToString()" alt="User-Profile-Image">
+                            <span>@HttpContext.Current.Session["LogedUserFullname"].ToString()</span>
                             <i class="ti-angle-down"></i>
                         </a>
                         <ul class="show-notification profile-notification">

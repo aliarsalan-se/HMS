@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
+    .timage {
+        width: 198px;
+        height: 221px;
+    }
     .Button-group {
         width: 146.750px;
         color: #fff;
@@ -40,67 +44,85 @@
                                                                     <div class="col-md-12">
                                                                         <div id="wizard">
                                                                             <section>
-                                                                                <div class="wizard-form" id="example-advanced-form">
-                                                                                    @Html.AntiForgeryToken()
-                                                                                    <table class="table col-md-12 table-bordered">
-                                                                                        <tr>
-                                                                                            <td class="ctd" style="border-bottom:none;padding-bottom:0" >
-                                                                                                <div class="col-sm-12 form-group row">
-                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="EmployeeNumber" class="block" style="line-height:50px">Employee #:</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input type="text" id="EmployeeNumber" name="EmployeeNumber" placeholder="Users Employee Number" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
-                                                                                                        <label for="Role" class="block" style="line-height:50px">Role:</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <select type="text" id="Role" name="Role" class="required form-control form-control-inverse" />
-                                                                                                    </div>
+                                                                                <fieldset style="width:100%" class="tabContent" id="Register">
+                                                                                    <div class="card-block">
+                                                                                        <div class="row">
+                                                                                            <div class="col-md-12">
+                                                                                                <div id="wizard">
+                                                                                                    <form method="post" action="/User/AddUser" enctype="multipart/form-data">
+                                                                                                        <section>
+                                                                                                            <div class="wizard-form" id="example-advanced-form">
+                                                                                                                @Html.AntiForgeryToken()
+                                                                                                                <table class="table col-md-12 table-bordered">
+                                                                                                                    <tr>
+                                                                                                                        <td style="width:226px">
+                                                                                                                            <div class="form-control-inverse">
+                                                                                                                                <div id="image-holder" class="form-control form-control-inverse" style="height:221px;width:200px;padding:0"></div>
+                                                                                                                                <br />
+                                                                                                                                <input id="Image" name="Image" type="file" class="required form-control form-control-inverse" style="width:200px">
+                                                                                                                            </div>
+                                                                                                                        </td>
+                                                                                                                        <td class="ctd">
+                                                                                                                            <div class="form-group row col-sm-12">
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px;padding-right:2px">
+                                                                                                                                    <label for="EmployeeNumber" class="block" style="line-height:50px">Employee #:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px;">
+                                                                                                                                    <input type="text" id="EmployeeNumber" name="EmployeeNumber" placeholder="User's Employee Number" class="required form-control form-control-inverse" />
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px; padding-right:2px; text-align:center">
+                                                                                                                                    <label for="UserName" class="block" style="line-height:50px">Name:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px">
+                                                                                                                                    <input type="text" id="UserName" name="UserName" placeholder="Full Name" class="required form-control form-control-inverse" />
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="form-group row col-sm-12">
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px; padding-right:2px">
+                                                                                                                                    <label for="PhoneNum" class="block" style="line-height:50px">Phone Number:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px">
+                                                                                                                                    <input type="text" id="PhoneNum" name="PhoneNum" placeholder="Phone Number" class="required form-control form-control-inverse" />
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px;padding-right:2px; text-align:center">
+                                                                                                                                    <label for="Role" class="block" style="line-height:50px">Role:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px">
+                                                                                                                                    <select id="Role" name="Role" type="" class="required form-control form-control-inverse"></select>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="form-group row col-sm-12">
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px; padding-right:2px">
+                                                                                                                                    <label for="EmailAddress" class="block" style="line-height:50px">Email:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px">
+                                                                                                                                    <input type="email" id="EmailAddedress" name="EmailAddress" placeholder="Email Address" class="required form-control form-control-inverse today" />
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-2" style="padding-left:5px;padding-right:2px; text-align:center">
+                                                                                                                                    <label for="Password" class="block" style="line-height:50px">Password:</label>
+                                                                                                                                </div>
+                                                                                                                                <div class="col-sm-4" style="padding-left:5px">
+                                                                                                                                    <input type="password" id="Password" name="Password" placeholder="Secure Password" class="required form-control form-control-inverse" />
+
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="col-sm-12 form-group row">
+                                                                                                                                <div class="col-sm-9"></div>
+                                                                                                                                <div class="col-sm-3" style="padding-left:5px">
+                                                                                                                                    <input type="submit" name="submit" class="btn-primary btn-sm Button-group" value="Register User" />
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </td>
+                                                                                                                    </tr>
+                                                                                                                </table>
+                                                                                                            </div>
+                                                                                                        </section>
+                                                                                                    </form>
                                                                                                 </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td class="ctd" style="border-top:none;padding-top:0" >
-                                                                                                <div class="form-group row col-sm-12">
-                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="EmailAddress" class="block" style="line-height:50px">Email :</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input type="text" id="EmailAddress" name="EmailAddress" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
-                                                                                                        <label for="PhoneNum" class="block" style="line-height:50px">Phone :</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <input type="text" id="PhoneNum" name="PhoneNum" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row col-sm-12">
-                                                                                                    <div class="col-sm-1" style="padding-left:5px;padding-right:2px">
-                                                                                                        <label for="UserName" class="block" style="line-height:50px">UserName :</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                        <input type="text" id="UserName" name="UserName" placeholder="Unique User Name" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-1" style="padding-left:5px; padding-right:2px; text-align:center">
-                                                                                                        <label for="Password" class="block" style="line-height:50px">Password :</label>
-                                                                                                    </div>
-                                                                                                    <div class="col-sm-5" style="padding-left:5px">
-                                                                                                        <input type="text" id="Password" name="Password" placeholder="atleast 6 characters" class="required form-control form-control-inverse" />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                                <div class="form-group row col-sm-12">
-                                                                                                    <div class="col-sm-9"></div>
-                                                                                                    <div class="col-sm-3" style="padding-left:5px">
-                                                                                                        <button class="btn-primary btn-sm Button-group">Submit</button>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    </table>
-                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </fieldset>
                                                                             </section>
                                                                         </div>
                                                                     </div>
@@ -122,7 +144,8 @@
     </div>
 </div>
 <script>
-    $('#Role').html('');
+  
+         $('#Role').html('');
         var options = '';
         $.ajax({
                 url: '@Url.Action("Roles", "User")',
@@ -138,5 +161,42 @@
                          $('#Role').append(options);
                   }
     });
-    $("#PhoneNum").inputmask({ "mask": "(03)-99-99999999" });
+
+    $("#PhoneNum").inputmask({ "mask": "(03)-999-9999999" });
+
+    $(function () {
+        $("#Image").on('change', function () {
+            //Get count of selected files
+            var countFiles = $(this)[0].files.length;
+
+            var imgPath = $(this)[0].value;
+            var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+            var image_holder = $("#image-holder");
+            image_holder.empty();
+
+            if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+                if (typeof (FileReader) != "undefined") {
+
+                    //loop for each file selected for uploaded.
+                    for (var i = 0; i < countFiles; i++) {
+
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $("<img />", {
+                                "src": e.target.result,
+                                "class": "thumb-image timage"
+                            }).appendTo(image_holder);
+                        }
+                        image_holder.show();
+                        reader.readAsDataURL($(this)[0].files[i]);
+                    }
+
+                } else {
+                    alert("This browser does not support FileReader.");
+                }
+            } else {
+                alert("Pls select only images");
+            }
+        });
+    });
 </script>
