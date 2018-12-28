@@ -16,7 +16,7 @@ namespace HMS
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Patient", action = "PatientsGrid", id = UrlParameter.Optional }
+                defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

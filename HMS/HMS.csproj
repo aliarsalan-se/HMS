@@ -770,6 +770,7 @@
     <Content Include="ThemeAssets\images\commingsoon\cs-1.jpg" />
     <Content Include="ThemeAssets\images\commingsoon\cs-2.jpg" />
     <Content Include="ThemeAssets\images\complete.png" />
+    <Content Include="ThemeAssets\images\hms.ico" />
     <Content Include="ThemeAssets\images\details_close.png" />
     <Content Include="ThemeAssets\images\details_open.png" />
     <Content Include="ThemeAssets\images\e-payment\card\amex.jpg" />
@@ -1830,9 +1831,11 @@
     <Content Include="Views\User\AddUser.cshtml" />
     <Content Include="Views\Patient\Diagnose.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Patient\CreatePatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\" />
     <Folder Include="Uploads\Patients\" />
     <Folder Include="Uploads\Users\" />
     <Folder Include="Views\Doctors\" />

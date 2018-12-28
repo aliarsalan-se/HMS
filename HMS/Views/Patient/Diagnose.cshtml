@@ -48,7 +48,8 @@
         padding: 0;
         border: 0;
         height: 50px;
-        width: 195px
+        width: 195px;
+        align-content:center
     }
     #crow{
         padding-bottom:0px
@@ -74,7 +75,7 @@
                                                             
                                                         </div>
 
-                                                        <fieldset class="tabContent" id="Diagnosis" style="width:100%">
+                                                        <fieldset class="tabContent" id="Diagnosis" style="width:100%; display:block">
                                                             <div class="card-block">
                                                                 <div class="row">
                                                                     <div class="col-md-12">
@@ -134,7 +135,7 @@
                                                                                     <div class="form-group col-sm-12 form-group row">
                                                                                         <div class="col-sm-9"></div>
                                                                                         <div class="col-sm-3">
-                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="Prescribe()">Prescribe Medicines</button>
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="PostDiagnosis(); gotoPrescription();">Prescribe Medicines</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -152,7 +153,7 @@
                                                                         <div id="wizard">
                                                                             <section>
                                                                                 <div class="wizard-form" id="example-advanced-form">
-                                                                                    <table  class="table col-md-12 table-bordered " id="maintable">
+                                                                                    <table  class="table col-md-12 table-bordered " id="maintable" style="font-weight:300">
                                                                                         <tr>
                                                                                             <th align="center">Medicine Name</th>
                                                                                             <th align="center">Dosage</th>
@@ -161,15 +162,15 @@
                                                                                             <th align="center">Evening</th>
                                                                                             <th align="center">Night</th>
                                                                                         </tr>
-                                                                                        <tr>
+                                                                                        <tr style="font-size:x-large">
                                                                                             <td style="width: 192px;padding:0">
-                                                                                                <input type="text" name="MedicineName" id="MedicineName" class="minput" />
+                                                                                                <input type="text" name="Medicine" id="Medicine" class="minput" />
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
                                                                                                 <input type="text" name="Dosage" id="Dosage" class="minput" />
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
-                                                                                                <input type="text" name="Quantity" id="Quantity" class="minput" onclick="Addnew()"/>
+                                                                                                <input type="text" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" name="Quantity" id="Quantity" class="minput" onclick="Addnew()"/>
                                                                                             </td>
                                                                                             <td style="width: 192px;padding:0">
                                                                                                 <input type="checkbox" id="Morning" class="roundedOne form-control" />
@@ -185,7 +186,7 @@
                                                                                     <div class="form-group col-sm-12 form-group row" style="padding-right:0px; margin-right:0px">
                                                                                         <div class="col-sm-9"></div>
                                                                                         <div class="col-sm-3" style="left:40px">
-                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="Prescribe();" >Make  Appointment</button>
+                                                                                            <button class="btn-primary btn-sm Button-group" style="width:195px;height:45px" onclick="Prescribe();" >Prescribe</button>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -210,10 +211,16 @@
     </div>
 </div>
 <script>
+    var options = ["Syrup", "Tablets", "Injection"];
+    $('#Dosage').autocomplete(options);
+    var temp, symptoms, bp, dp;
+    var appointment = '@Model.AppointmentID.ToString()';
     var patient = '@Model.Patient.Name.ToString()' ;
     var dr= '@Model.User.UserName.ToString()' ;
     $('#PatientName').val(patient);
     $('#DoctorName').val(dr);
+    $("#Temperature").inputmask({ "mask": "99.99-(F)" });
+    $("#BloodPressure").inputmask({ "mask": "999.99-mmHg" });
 
     function tabselector(evt, tabName) {
         var i, tabcontent, tablinks;
@@ -232,9 +239,9 @@
     }
 
     function Addnew() {
-        var markup = "<tr><td style='width: 192px; padding: 0'> <input type='text' id='MedicineName' class='minput' onclick='Addnew()'/></td>" +
+        var markup = "<tr style='font-size:x-large'><td style='width: 192px; padding: 0'> <input type='text' id='Medicine' class='minput' /></td>" +
             "<td style='width: 192px; padding: 0'> <input type='text' id='Dosage' class='minput'/></td>" +
-            "<td style='width: 192px; padding: 0'><input type='text' id='Quantity'  class='minput'/></td>" +
+            "<td style='width: 192px; padding: 0'><input type='text'  id='Quantity'  class='minput' onclick='Addnew()'/></td>" +
             "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Morning' class='roundedOne form-control'/> </td>" +
             "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Evening' class='roundedOne form-control'/>  </td>" +
             "<td style='width: 192px; padding: 0'><input type='checkbox' id='Night'  class='roundedOne form-control'/></td> </tr>";
@@ -251,24 +258,67 @@
 
         table.find('tr').each(function (i) {
             var $tds = $(this).find('td input'),
-                MedicineName = $tds.eq(0).val(),
-                Dosage= $tds.eq(1).val(),
-                Quantity = $tds.eq(2).val();
-            var Time="";
+                medicine = $tds.eq(0).val(),
+                dosage= $tds.eq(1).val(),
+                quantity = $tds.eq(2).val();
+            var time="";
             if ($tds.eq(3).is(":checked"))
-                Time = "m";
+                time = "m";
             if ($tds.eq(4).is(":checked"))
-                Time = Time + "e";
+                time = time + "e";
             if ($tds.eq(5).is(":checked"))
-                Time = Time + "n";
+                time = time + "n";
             // do something with productId, product, Quantity
             
-            //alert('Row ' + (i + 1) + ':\nId: ' + MedicineName
+            //alert('Row ' + (i + 1) + ':\nId: ' + Medicine
             //    + '\nProduct: ' + Dosage
             //    + '\nQuantity: ' + Quantity);
-            data.push({ MName: MedicineName, dosage: Dosage, quantity: Quantity, time: Time });
+            data.push({ Medicine: medicine, Dosage: dosage, Quantity: quantity, Time: time });
             
         });
-                debugger
+        data = JSON.stringify({ 'data': data });
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'POST',
+            url: '@Url.Action("SavePrescription","Patient")',
+            data: data,
+            success: function () {
+            },
+            failure: function (response) {
+            }
+        }); 
     }
+    function gotoPrescription() {
+        tabselector(null, 'Prescription');
+    }
+
+    function PostDiagnosis() {
+        debugger
+        temp = $('#Temperature').val();
+        symptoms = $('#Symptoms').val();
+        dp = $('#DiagnoseProblem').val();
+        bp = $('#BloodPressure').val();
+        var fd = new FormData();
+        fd.append("Appointment", appointment);
+        fd.append("Temperature", temp);
+        fd.append("BloodPressure", bp);
+        fd.append("DiagnosedProblem", dp);
+        fd.append("Symptoms", symptoms);
+          $.ajax({
+                url: '@Url.Action("GetDiagnose","Patient")',
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: fd,
+                success: function (response) {
+                    alert(response);
+                }
+            });
+          
+    }
+    
 </script>
+<script src="~/ThemeAssets/pages/form-masking/jquery-input-mask-phone-number.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>

@@ -16,25 +16,41 @@
                             </a>
                             <ul class="pcoded-submenu">
                                 <li class="active">
-                                    <a href="index-2.html">
+                                    <a href='@Url.Action("Patients","Patient")'>
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.default">All Patients</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class=" ">
-                                    <a href='@Url.Action("AddPatient","Patient")'>
+                                    <a href='@Url.Action("Appointments","Patient")'>
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext">Register Patient</span>
+                                        <span class="pcoded-mtext">All Appointments</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class=" ">
-                                    <a href="dashboard-crm.html">
+                                <li class="pcoded-hasmenu ">
+                                    <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.crm">Appointment</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.crm">Make Appointment</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class="active">
+                                            <a href='@Url.Action("Patients","Patient")'>
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.dash.crm">Existing Patient</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class="active">
+                                            <a href='@Url.Action("Patients","Patient")'>
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.dash.crm">New Patient</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -83,7 +99,7 @@
                                     </a>
                                 </li>
                                 <li class=" ">
-                                    <a href="dashboard-ecommerce.html">
+                                    <a href='@Url.Action("Appointments","Patient")'>
                                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.ecommerce">Add User</span>
                                         <span class="pcoded-mcaret"></span>

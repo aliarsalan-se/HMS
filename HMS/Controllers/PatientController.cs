@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Linq.Dynamic;
 using DataTables.Mvc;
+using System.Collections.Generic;
 
 namespace HMS.Controllers
 {
@@ -12,9 +13,36 @@ namespace HMS.Controllers
     {
         //Global Variables
         private HospitalManagementSystemEntities1 db = new HospitalManagementSystemEntities1();
+        public ActionResult CreatePatient()
+        {
+            if (Session["LogedUserID"] == null)
+                return RedirectToAction("Login", "User");
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreatePatient(Patient p,HttpPostedFileBase Image)
+        {
+            Patient patient = new Patient();
+            patient.EmployeeNumber = p.EmployeeNumber;
+            patient.Name = p.Name;
+            patient.Gender = p.Gender;
+            patient.DOB = p.DOB;
+            patient.RegistrationDate = p.RegistrationDate;
+            patient.PhoneNumber = p.PhoneNumber;
+            patient.Adress = p.Adress;
+            if (Image != null)
+            {
+
+            }
+            return View();
+        }
+      
 
         public ActionResult Appointments()
         {
+            if (Session["LogedUserID"] == null)
+                return RedirectToAction("Login", "User");
             return View();
         }
         public ActionResult Patients()
@@ -24,6 +52,8 @@ namespace HMS.Controllers
         // GET: Patient
         public ActionResult AddPatient()
         {
+            if (Session["LogedUserID"] == null)
+                return RedirectToAction("Login", "User");
             return View();
         }
      
@@ -138,6 +168,8 @@ namespace HMS.Controllers
 
         public ActionResult MakeAppointment(int id)
         {
+            if (Session["LogedUserID"] == null)
+                return RedirectToAction("Login", "User");
             var model = db.Patients.Where(p => p.PatientID== id).FirstOrDefault();
             return View(model);
         }
@@ -205,9 +237,38 @@ namespace HMS.Controllers
 
         public ActionResult Diagnose(int id)
         {
+            if(Session["LogedUserID"]==null)
+                return RedirectToAction("Login", "User");
             var model = db.Appointments.Where(p => p.AppointmentID == id).FirstOrDefault();
             return View(model);
         } 
+        [HttpPost]
+        public ContentResult GetDiagnose(FormCollection fc)
+        {
+            Diagnosi dg = new Diagnosi();
+            dg.AppointmentID= Convert.ToInt32(fc["Appointment"]);
+            dg.BloodPressure = fc["BloodPressure"];
+            dg.Temperature = fc["Temperature"];
+            dg.Symptoms = fc["Symptoms"];
+            dg.DiagnosedProblem = fc["DiagnosedProblem"];
+            return Content("Success");
+        }
+        [HttpPost]
+        public ContentResult SavePrescription(List<Prescription> data)
+        {
+            foreach(Prescription rec in data)
+            {
+                if (rec.Medicine != null)
+                {
+                    Prescription p = new Prescription();
+                    p.Medicine = rec.Medicine;
+                    p.Dosage = rec.Dosage;
+                    p.Quantity = Convert.ToInt16(rec.Quantity);
+                    p.Time = rec.Time;
+                }
+            }
+            return Content("hello");
+        }
     }
 
 

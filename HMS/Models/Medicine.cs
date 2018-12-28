@@ -20,7 +20,7 @@ namespace HMS.Models
             this.Prescriptions = new HashSet<Prescription>();
         }
     
-        public int MedsID { get; set; }
+        public string MedsID { get; set; }
         public string Name { get; set; }
         public string Formula { get; set; }
         public string Formulation { get; set; }

@@ -52,7 +52,7 @@
           <Key>
             <PropertyRef Name="MedsID" />
           </Key>
-          <Property Name="MedsID" Type="int" Nullable="false" />
+          <Property Name="MedsID" Type="char" MaxLength="100" Nullable="false" />
           <Property Name="Name" Type="char" MaxLength="20" />
           <Property Name="Formula" Type="char" MaxLength="10" />
           <Property Name="Formulation" Type="nchar" MaxLength="10" />
@@ -79,7 +79,7 @@
           </Key>
           <Property Name="PrescriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DiagnoseID" Type="int" />
-          <Property Name="MedID" Type="int" />
+          <Property Name="Medicine" Type="char" MaxLength="100" />
           <Property Name="Dosage" Type="char" MaxLength="10" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Time" Type="char" MaxLength="30" />
@@ -199,7 +199,7 @@
               <PropertyRef Name="MedsID" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="MedID" />
+              <PropertyRef Name="Medicine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -421,7 +421,7 @@
           <Key>
             <PropertyRef Name="MedsID" />
           </Key>
-          <Property Name="MedsID" Type="Int32" Nullable="false" />
+          <Property Name="MedsID" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="Formula" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Formulation" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -452,12 +452,12 @@
           </Key>
           <Property Name="PrescriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DiagnoseID" Type="Int32" />
-          <Property Name="MedID" Type="Int32" />
+          <Property Name="Medicine" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
           <Property Name="Dosage" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Time" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Diagnosi" Relationship="HMS.FK_Prescription_Diagnosis" FromRole="Prescription" ToRole="Diagnosi" />
-          <NavigationProperty Name="Medicine" Relationship="HMS.FK_Prescription_Medicine" FromRole="Prescription" ToRole="Medicine" />
+          <NavigationProperty Name="Medicine1" Relationship="HMS.FK_Prescription_Medicine" FromRole="Prescription" ToRole="Medicine" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -575,7 +575,7 @@
               <PropertyRef Name="MedsID" />
             </Principal>
             <Dependent Role="Prescription">
-              <PropertyRef Name="MedID" />
+              <PropertyRef Name="Medicine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -689,7 +689,7 @@
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Dosage" ColumnName="Dosage" />
-                <ScalarProperty Name="MedID" ColumnName="MedID" />
+                <ScalarProperty Name="Medicine" ColumnName="Medicine" />
                 <ScalarProperty Name="DiagnoseID" ColumnName="DiagnoseID" />
                 <ScalarProperty Name="PrescriptionID" ColumnName="PrescriptionID" />
               </MappingFragment>
