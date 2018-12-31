@@ -9,10 +9,10 @@
         <EntityTypeShape EntityType="HMS.Department" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="HMS.Diagnosi" Width="1.5" PointX="9.75" PointY="1.125" />
         <EntityTypeShape EntityType="HMS.Employee" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="HMS.Medicine" Width="1.5" PointX="9.75" PointY="5.5" />
+        <EntityTypeShape EntityType="HMS.Medicine" Width="1.5" PointX="0.75" PointY="5.75" />
         <EntityTypeShape EntityType="HMS.Patient" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="HMS.Prescription" Width="1.5" PointX="12" PointY="1.375" />
-        <EntityTypeShape EntityType="HMS.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HMS.Prescription" Width="1.5" PointX="12" PointY="1.5" />
+        <EntityTypeShape EntityType="HMS.sysdiagram" Width="1.5" PointX="7.75" PointY="5.75" />
         <EntityTypeShape EntityType="HMS.User" Width="1.5" PointX="5.25" PointY="5.25" />
         <AssociationConnector Association="HMS.FK_Appointment_Patient" />
         <AssociationConnector Association="HMS.FK_Appointment_User" />
@@ -21,7 +21,6 @@
         <AssociationConnector Association="HMS.FK_Diagnosis_Patient" />
         <AssociationConnector Association="HMS.FK_Prescription_Diagnosis" />
         <AssociationConnector Association="HMS.FK_Patient_Employee" />
-        <AssociationConnector Association="HMS.FK_Prescription_Medicine" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

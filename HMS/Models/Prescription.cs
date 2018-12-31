@@ -22,6 +22,5 @@ namespace HMS.Models
         public string Time { get; set; }
     
         public virtual Diagnosi Diagnosi { get; set; }
-        public virtual Medicine Medicine1 { get; set; }
     }
 }

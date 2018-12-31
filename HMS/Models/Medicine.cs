@@ -14,20 +14,11 @@ namespace HMS.Models
     
     public partial class Medicine
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Medicine()
-        {
-            this.Prescriptions = new HashSet<Prescription>();
-        }
-    
         public string MedsID { get; set; }
         public string Name { get; set; }
         public string Formula { get; set; }
         public string Formulation { get; set; }
         public string SideEffects { get; set; }
         public Nullable<bool> Availablity { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Prescription> Prescriptions { get; set; }
     }
 }

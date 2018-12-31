@@ -71,7 +71,7 @@
                                                     <section>
                                                         <div class="nav nav-tabs md-tabs col-sm-12">
                                                             <button class="btn-xlg primary-btn ctab tablinks col-sm-2" role="tab" onclick="tabselector(event,'Diagnosis')" id="diag">3. Diagnosis<i class="icofont icofont-arrow-right"></i></button>
-                                                            <button class="btn-xlg primary-btn ctab tablinks col-sm-2" role="tab" onclick="tabselector(event,'Prescription')" id="pres">4. Prescription <i class="icofont icofont-arrow-right"></i></button>
+                                                            <button class="btn-xlg primary-btn ctab tablinks col-sm-2" role="tab" id="pres">4. Prescription <i class="icofont icofont-arrow-right"></i></button>
                                                             
                                                         </div>
 
@@ -211,6 +211,7 @@
     </div>
 </div>
 <script>
+    var diagnoseId;
     var options = ["Syrup", "Tablets", "Injection"];
     $('#Dosage').autocomplete(options);
     var temp, symptoms, bp, dp;
@@ -273,7 +274,7 @@
             //alert('Row ' + (i + 1) + ':\nId: ' + Medicine
             //    + '\nProduct: ' + Dosage
             //    + '\nQuantity: ' + Quantity);
-            data.push({ Medicine: medicine, Dosage: dosage, Quantity: quantity, Time: time });
+            data.push({ Medicine: medicine, Dosage: dosage, Quantity: quantity, Time: time, DiagnoseID: diagnoseId });
             
         });
         data = JSON.stringify({ 'data': data });
@@ -283,7 +284,8 @@
             type: 'POST',
             url: '@Url.Action("SavePrescription","Patient")',
             data: data,
-            success: function () {
+            success: function (response) {
+                alert(response);
             },
             failure: function (response) {
             }
@@ -312,7 +314,8 @@
                 contentType: false,
                 processData: false,
                 data: fd,
-                success: function (response) {
+              success: function (response) {
+                  diagnoseId = response;
                     alert(response);
                 }
             });
