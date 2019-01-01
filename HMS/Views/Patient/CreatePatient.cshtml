@@ -73,7 +73,7 @@
                                                                                                             <label for="DOB" class="block" style="line-height:50px">Date Of Birth:</label>
                                                                                                         </div>
                                                                                                         <div class="col-sm-4" style="padding-left:5px">
-                                                                                                            <input onfocus="this.type='date'" id="DOB" name="DOB" placeholder="Date of Birth" class="required form-control form-control-inverse" />
+                                                                                                            <input type="text" id="DOB" name="DOB" placeholder="Date of Birth" class="date form-control required form-control-inverse" />
                                                                                                         </div>
                                                                                                         <div class="col-sm-2" style="padding-left:5px;padding-right:2px; text-align:center">
                                                                                                             <label for="StudentGender" class="block" style="line-height:50px">Gender:</label>
@@ -91,7 +91,7 @@
                                                                                                             <label for="RegistrationDate" class="block" style="line-height:50px">Registration:</label>
                                                                                                         </div>
                                                                                                         <div class="col-sm-4" style="padding-left:5px">
-                                                                                                            <input onfocus="this.type='date'" id="RegistrationDate" name="RegistrationDate" placeholder="Today's Date" class="required form-control form-control-inverse today" />
+                                                                                                            <input type="text" id="RegistrationDate" name="RegistrationDate" placeholder="Today's Date" class="required form-control form-control-inverse today" />
                                                                                                         </div>
                                                                                                         <div class="col-sm-2" style="padding-left:5px;padding-right:2px; text-align:center">
                                                                                                             <label for="PhoneNumber" class="block" style="line-height:50px">Phone #:</label>
@@ -113,7 +113,7 @@
                                                                                                     <div class="col-sm-12 form-group row">
                                                                                                         <div class="col-sm-9"></div>
                                                                                                         <div class="col-sm-3" style="padding-left:5px">
-                                                                                                            <button type="submit" class="btn-primary btn-sm Button-group" onclick="NextPatient()">Next</button>
+                                                                                                            <button type="submit" class="btn-primary btn-sm Button-group" onclick="Create();">Next</button>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </td>
@@ -148,7 +148,7 @@
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
     var today = (month) + "/" + (day) + "/" + now.getFullYear();
     $('#RegistrationDate').val(today);
-    $("#PhoneNumber").inputmask({ "mask": "(03)-99-99999999" });
+    $("#PhoneNumber").inputmask({ "mask": "(03)-999-9999999" });
     $(function () {
         $("#Image").on('change', function () {
             //Get count of selected files
@@ -182,6 +182,62 @@
             } else {
                 alert("Pls select only images");
             }
+        });
+    });
+  function Create() {
+        var employeeNum,name, dob, gender, reg, phone, address,image;
+
+        employeeNum = $("#EmployeeNumber").val();
+        name = $("#Name").val();
+        dob = $("#DOB").val();
+        gender = $("#Gender").val();
+        reg = $("#RegistrationDate").val();
+        phone = $("#PhoneNumber").val();
+        address = $("#Address").val();
+        image = document.getElementById("Image").files[0];
+        debugger
+        if (name=="" || dob == "" || gender == "" || reg == "" || phone == "" || address == "") {
+            alert('Please Fill Out The form ');
+        }
+        else {
+            //sendingData to controller
+            var fd = new FormData();
+            fd.append("Name", name);
+            fd.append("DOB", dob);
+            fd.append("Gender", gender);
+            fd.append("RegistrationDate", reg);
+            fd.append("PhoneNumber", phone);
+            fd.append("Address", address);
+            fd.append("Img", image);
+            $.ajax({
+                url: '@Url.Action("AddPatient","Patient")',
+                type: 'POST',
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: fd,
+                success: function (response) {
+                    swal({
+                        title: "Patient Added",
+                        text: response,
+                        icon: "success",
+                    });
+                    window.location.href = '@Url.Action("Patients", "Patient")'
+                }
+            });
+
+            tabselector(null, 'Appointment');
+            var formdata = new FormData();
+            $("#ap").addClass("btn-xlg primary-btn ctab tablinks col-sm-2 active1");
+        }
+      
+       
+    }
+    $(function () {
+        $("#DOB,#RegistrationDate").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showAnim:"slideDown"
         });
     });
 </script>

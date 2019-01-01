@@ -8,6 +8,7 @@ using System.Linq.Dynamic;
 using DataTables.Mvc;
 using System.Collections.Generic;
 using HMS.Reports;
+using System.IO;
 
 namespace HMS.Controllers
 {
@@ -15,32 +16,13 @@ namespace HMS.Controllers
     {
         //Global Variables
         private HospitalManagementSystemEntities1 db = new HospitalManagementSystemEntities1();
+        private int DiagnoseId=0;
         public ActionResult CreatePatient()
         {
             if (Session["LogedUserID"] == null)
                 return RedirectToAction("Login", "User");
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreatePatient(Patient p, HttpPostedFileBase Image)
-        {
-            Patient patient = new Patient();
-            patient.EmployeeNumber = p.EmployeeNumber;
-            patient.Name = p.Name;
-            patient.Gender = p.Gender;
-            patient.DOB = p.DOB;
-            patient.RegistrationDate = p.RegistrationDate;
-            patient.PhoneNumber = p.PhoneNumber;
-            patient.Adress = p.Adress;
-            if (Image != null)
-            {
-
-            }
-            return View();
-        }
-
-
         public ActionResult Appointments()
         {
             if (Session["LogedUserID"] == null)
@@ -58,7 +40,6 @@ namespace HMS.Controllers
                 return RedirectToAction("Login", "User");
             return View();
         }
-
         [HttpPost]
         public ContentResult AddPatient(FormCollection fc, HttpPostedFileBase Img)
         {
@@ -72,7 +53,7 @@ namespace HMS.Controllers
             //Code for Image
             if (Img != null)
             {
-                int id = db.Patients.Count();
+                int id = db.Patients.OrderByDescending(p => p.PatientID).First().PatientID;
                 id = id + 1;
                 string UploadPath = Server.MapPath("~/Uploads/Patients");
                 Img.SaveAs(System.IO.Path.Combine(UploadPath, id.ToString(), ".jpeg"));
@@ -84,8 +65,6 @@ namespace HMS.Controllers
             return Content(pt.Name);
 
         }
-
-
         public ActionResult LoadData()
         {
 
@@ -120,7 +99,6 @@ namespace HMS.Controllers
                 return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             }
         }
-
         public ActionResult Get([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
             var TodayDate = DateTime.Now.Date;
@@ -170,7 +148,6 @@ namespace HMS.Controllers
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult MakeAppointment(int id)
         {
             if (Session["LogedUserID"] == null)
@@ -178,7 +155,6 @@ namespace HMS.Controllers
             var model = db.Patients.Where(p => p.PatientID == id).FirstOrDefault();
             return View(model);
         }
-
         [HttpPost]
         public void MakeAppointment(FormCollection fc)
         {
@@ -190,8 +166,6 @@ namespace HMS.Controllers
             db.Appointments.Add(apt);
             db.SaveChanges();
         }
-
-
         public ActionResult GetAppointments([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestModel)
         {
 
@@ -240,7 +214,6 @@ namespace HMS.Controllers
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }
-
         public ActionResult Diagnose(int id)
         {
             if (Session["LogedUserID"] == null)
@@ -263,9 +236,9 @@ namespace HMS.Controllers
             return Content(did.ToString());
         }
         [HttpPost]
-        public ContentResult SavePrescription(List<Prescription> data)
+        public ActionResult SavePrescription(List<Prescription> data)
         {
-            int DiagnoseId = Convert.ToInt16(data[1].DiagnoseID);
+             DiagnoseId = Convert.ToInt16(data[1].DiagnoseID);
 
             foreach (Prescription rec in data)
             {
@@ -282,22 +255,22 @@ namespace HMS.Controllers
                 }
             }
             var model = db.Prescriptions.Where(p => p.DiagnoseID == DiagnoseId).ToList();
-            return Content("Changes Successfully Made");
+            
+             return Json("Changes Successfully Made",JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Print()
+        {
+            var report = new XtraReport1();
+            var stream = new MemoryStream();
+            report.ExportToPdf(stream);
 
-      
-        //public ActionResult Print()
-        //{
-        //    PrescriptionReport report = new PrescriptionReport();
-        //    report.Parameters["PatientName"].Value = "Hello";
-        //    report.FilterString = "[Prescription]=" + db.Prescriptions.Where(p => p.DiagnoseID == 3).FirstOrDefault().ToString();
-        //    return View("Report1", report);
-        //}
-
-        //internal class User
-        //{
-        //    public String FirstName { get; set; }
-        //    public String LastName{ get; set; }
-        //}
+            var cd = new System.Net.Mime.ContentDisposition
+            {
+                FileName = "filename.pdf",
+                Inline = false,
+            };
+            Response.AppendHeader("Content-Disposition", cd.ToString());
+            return File(stream.GetBuffer(), "application/pdf");
+        }
     }
 }

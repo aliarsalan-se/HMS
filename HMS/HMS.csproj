@@ -1860,6 +1860,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Patient\CreatePatient.cshtml" />
     <Content Include="Views\Patient\Report1.cshtml" />
+    <Content Include="Views\Shared\_report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

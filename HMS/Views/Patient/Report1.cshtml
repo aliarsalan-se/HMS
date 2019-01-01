@@ -1,1 +1,8 @@
-﻿
+﻿@{
+    ViewBag.Title = "Reeport";
+    Layout = "~/Views/Shared/_report.cshtml";
+}
+
+@Html.DevExpress().WebDocumentViewer(settings => {
+    settings.Name = "WebDocumentViewer1";
+}).Bind(new DevExpress.XtraReports.Web.CachedReportSourceWeb(new HMS.Reports.XtraReport1())).GetHtml()

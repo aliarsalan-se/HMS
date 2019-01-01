@@ -57,7 +57,7 @@
                                                                                                             <label for="Date" class="block" style="line-height:50px">Date :</label>
                                                                                                         </div>
                                                                                                         <div class="col-sm-5" style="padding-left:5px;">
-                                                                                                            <input onfocus="this.type='date'" id="Date" name="Date" placeholder="Today's Date" class="required form-control form-control-inverse" />
+                                                                                                            <input type="text" id="Date" name="Date" placeholder="Today's Date" class="required form-control form-control-inverse" />
                                                                                                         </div>
                                                                                                         <div class="col-sm-1" style="padding-left:5px; padding-right:2px">
                                                                                                             <label for="Name" class="block" style="line-height:50px">Time:</label>
@@ -161,4 +161,12 @@
             });
         }
     }
+
+    $(function () {
+        $("#Date").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showAnim: "slideDown"
+        });
+    });
 </script>

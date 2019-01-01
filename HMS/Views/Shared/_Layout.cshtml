@@ -25,7 +25,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Mada:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
+    <link href="~/ThemeAssets/jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="~/Scripts/bower_components/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="~/ThemeAssets/icon/themify-icons/themify-icons.css">
 
@@ -61,18 +61,18 @@
 
 
     <div id="pcoded" class="pcoded">
-       
+
         <div class="pcoded-container navbar-wrapper">
-               @Html.Partial("_NavBar")
-            
-                 @Html.Partial("_RightSideMenu")
-                    
-                 @Html.Partial("_StyleSelector")
-         </div>
+            @Html.Partial("_NavBar")
+
+            @Html.Partial("_RightSideMenu")
+
+            @Html.Partial("_StyleSelector")
+        </div>
     </div>
-                       
-                   
-               
+
+
+
 
     <!--[if lt IE 9]>
     <div class="ie-warning">
@@ -165,6 +165,7 @@
         <script src="~/ThemeAssets/pages/form-masking/inputmask.js" type="text/javascript"></script>
         <script src="~/ThemeAssets/pages/form-masking/jquery.inputmask.js" type="text/javascript"></script>
         <script src="~/ThemeAssets/pages/form-masking/jquery-input-mask-phone-number.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </Scripts>
     @RenderBody()
 </body>

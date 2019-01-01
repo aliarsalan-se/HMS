@@ -19,18 +19,15 @@
         /*width: auto;*/
         margin-right: 10px;
     }
-
         .ctab:hover {
             display: block;
             /*width: auto;*/
             text-decoration: none;
             outline: none;
         }
-
     .active1 {
         background-color: #005780;
     }
-
     .tabContent {
         display: none;
     }
@@ -222,7 +219,6 @@
     $('#DoctorName').val(dr);
     $("#Temperature").inputmask({ "mask": "99.99-(F)" });
     $("#BloodPressure").inputmask({ "mask": "999.99-mmHg" });
-
     function tabselector(evt, tabName) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabContent");
@@ -236,9 +232,7 @@
         document.getElementById(tabName).style.display = "block";
         if (evt != null)
             evt.currentTarget.className += "btn-xlg primary-btn ctab tablinks col-sm-2 active1";
-
     }
-
     function Addnew() {
         var markup = "<tr style='font-size:x-large'><td style='width: 192px; padding: 0'> <input type='text' id='Medicine' class='minput' /></td>" +
             "<td style='width: 192px; padding: 0'> <input type='text' id='Dosage' class='minput'/></td>" +
@@ -246,17 +240,12 @@
             "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Morning' class='roundedOne form-control'/> </td>" +
             "<td style='width: 192px; padding: 0'> <input type='checkbox' id='Evening' class='roundedOne form-control'/>  </td>" +
             "<td style='width: 192px; padding: 0'><input type='checkbox' id='Night'  class='roundedOne form-control'/></td> </tr>";
-
-
-
         $("#maintable").append(markup);
     }
-
     function Prescribe() {
         
         var data = [];
         var table = $("#maintable");
-
         table.find('tr').each(function (i) {
             var $tds = $(this).find('td input'),
                 medicine = $tds.eq(0).val(),
@@ -285,15 +274,15 @@
             url: '@Url.Action("SavePrescription","Patient")',
             data: data,
             success: function (response) {
-                alert(response);
+                swal(response);
+                document.location = '@Url.Action("Print","Patient")';
             },
-            failure: function (response) {
-            }
         }); 
     }
     function gotoPrescription() {
         tabselector(null, 'Prescription');
     }
+
 
     function PostDiagnosis() {
         debugger
@@ -319,9 +308,9 @@
                     alert(response);
                 }
             });
-          
-    }
+           }
     
 </script>
 <script src="~/ThemeAssets/pages/form-masking/jquery-input-mask-phone-number.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.9/jquery.autocomplete.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
