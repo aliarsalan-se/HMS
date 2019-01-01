@@ -209,7 +209,8 @@ namespace HMS.Controllers
                 DoctorName = a.User.UserName,
                 Date = a.Date,
                 Time = a.Time,
-                AppointmentID = a.AppointmentID
+                AppointmentID = a.AppointmentID,
+                Diagnosed = a.Diagnosed
             }).ToList();
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
@@ -219,6 +220,8 @@ namespace HMS.Controllers
             if (Session["LogedUserID"] == null)
                 return RedirectToAction("Login", "User");
             var model = db.Appointments.Where(p => p.AppointmentID == id).FirstOrDefault();
+            model.Diagnosed = true;
+            db.SaveChanges();
             return View(model);
         }
         [HttpPost]

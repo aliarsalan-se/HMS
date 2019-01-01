@@ -14,6 +14,7 @@
           <Property Name="Time" Type="char" MaxLength="10" />
           <Property Name="Date" Type="char" MaxLength="10" />
           <Property Name="DoctorID" Type="int" />
+          <Property Name="Diagnosed" Type="bit" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -354,6 +355,7 @@
           <Property Name="Time" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Date" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="DoctorID" Type="Int32" />
+          <Property Name="Diagnosed" Type="Boolean" />
           <NavigationProperty Name="Patient" Relationship="HMS.FK_Appointment_Patient" FromRole="Appointment" ToRole="Patient" />
           <NavigationProperty Name="User" Relationship="HMS.FK_Appointment_User" FromRole="Appointment" ToRole="User" />
           <NavigationProperty Name="Diagnosis" Relationship="HMS.FK_Diagnosis_Appointment" FromRole="Appointment" ToRole="Diagnosi" />
@@ -578,6 +580,7 @@
           <EntitySetMapping Name="Appointments">
             <EntityTypeMapping TypeName="HMS.Appointment">
               <MappingFragment StoreEntitySet="Appointment">
+                <ScalarProperty Name="Diagnosed" ColumnName="Diagnosed" />
                 <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Time" ColumnName="Time" />

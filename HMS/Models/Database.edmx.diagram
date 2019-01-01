@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5024cd87dbae4d48adf10274f8116568" Name="Diagram1">
-        <EntityTypeShape EntityType="HMS.Appointment" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="HMS.Appointment" Width="1.5" PointX="7.5" PointY="1.25" />
         <EntityTypeShape EntityType="HMS.Department" Width="1.5" PointX="0.75" PointY="1.875" />
         <EntityTypeShape EntityType="HMS.Diagnosi" Width="1.5" PointX="9.75" PointY="1.125" />
         <EntityTypeShape EntityType="HMS.Employee" Width="1.5" PointX="3" PointY="1.125" />
