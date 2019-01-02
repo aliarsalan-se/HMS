@@ -274,8 +274,9 @@
             url: '@Url.Action("SavePrescription","Patient")',
             data: data,
             success: function (response) {
-                swal(response);
-                document.location = '@Url.Action("Print","Patient")';
+                //swal(response);
+                document.location = '@Url.Action("Print", "Patient")?id=' + diagnoseId;
+                  //Url.Action("Print","Patient",new {id =2 })
             },
         }); 
     }

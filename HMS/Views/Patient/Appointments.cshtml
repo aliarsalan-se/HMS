@@ -77,8 +77,12 @@
                             "width": "150px"
                         },
                         {
+                            "targets": [3,2],
+                            "orderable": false
+                        },
+                        {
                             "render": function (data, type, row) {
-                                if (row["Diagnosed"])
+                                if (!row["Diagnosed"])
                                     var inner = '<a class="btn btn-primary btn-xs edit" data-id="' + row.AppointmentID + '"href="/Patient/Diagnose/' + row.AppointmentID + '">Diagnose</a>'
                                 else {
                                     var inner = '<a style="pointer-events: none; display: inline-block; background-color:#1571E9;" class="btn btn-primary btn-xs edit" data-id="' + row.AppointmentID + '"href="/Patient/Diagnose/' + row.AppointmentID + '">Diagnosed</a>'

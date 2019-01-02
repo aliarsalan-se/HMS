@@ -56,7 +56,7 @@ namespace HMS.Controllers
                 int id = db.Patients.OrderByDescending(p => p.PatientID).First().PatientID;
                 id = id + 1;
                 string UploadPath = Server.MapPath("~/Uploads/Patients");
-                Img.SaveAs(System.IO.Path.Combine(UploadPath, id.ToString(), ".jpeg"));
+                Img.SaveAs(System.IO.Path.Combine(UploadPath, id.ToString()+".jpeg"));
                 pt.image = "~/Uploads/Patients" + "/" + id.ToString() + ".jpeg";
             }
             db.Patients.Add(pt);
@@ -163,6 +163,7 @@ namespace HMS.Controllers
             apt.DoctorID = Convert.ToInt32(fc["DId"]);
             apt.Date = fc["ADate"];
             apt.Time = fc["ATime"];
+            apt.Diagnosed = false;
             db.Appointments.Add(apt);
             db.SaveChanges();
         }
@@ -211,7 +212,7 @@ namespace HMS.Controllers
                 Time = a.Time,
                 AppointmentID = a.AppointmentID,
                 Diagnosed = a.Diagnosed
-            }).ToList();
+            })/*.Where(a=>a.DoctorName.Equals("admin"))*/.ToList();
 
             return Json(new DataTablesResponse(requestModel.Draw, data, filteredCount, totalCount), JsonRequestBehavior.AllowGet);
         }
@@ -257,13 +258,15 @@ namespace HMS.Controllers
                     db.SaveChanges();
                 }
             }
+            //Print(DiagnoseId);
             var model = db.Prescriptions.Where(p => p.DiagnoseID == DiagnoseId).ToList();
             
-             return Json("Changes Successfully Made",JsonRequestBehavior.AllowGet);
+             return Json(DiagnoseId.ToString(),JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Print()
+        public ActionResult Print(int id)
         {
             var report = new XtraReport1();
+            report.FilterString = "[ID]=" + id.ToString();
             var stream = new MemoryStream();
             report.ExportToPdf(stream);
 
